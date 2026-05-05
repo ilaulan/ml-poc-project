@@ -9,7 +9,6 @@ from typing import Any
 
 from dotenv import load_dotenv
 
-
 def _load_module(module_name: str, module_path: Path) -> Any:
     spec = importlib.util.spec_from_file_location(module_name, module_path)
     if spec is None or spec.loader is None:
