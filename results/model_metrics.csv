@@ -1,0 +1,4 @@
+model_key,model_name,model_path,MAE,R2_Score
+ridge,Régression Ridge (Expert),C:\Users\Utilisateur\Documents\Albert School\B2\SEMESTRE 2\Achieving a ML Proof of Concept\ml-poc-project\models\ridge_expert_model.joblib,0.035204198312663484,0.41790346214451324
+rf,Random Forest (Expert),C:\Users\Utilisateur\Documents\Albert School\B2\SEMESTRE 2\Achieving a ML Proof of Concept\ml-poc-project\models\random_forest_expert_model.joblib,0.03901046317060252,0.336516177126132
+gb,Gradient Boosting (Expert),C:\Users\Utilisateur\Documents\Albert School\B2\SEMESTRE 2\Achieving a ML Proof of Concept\ml-poc-project\models\gradient_boosting_expert_model.joblib,0.03692992189640139,0.3977104009042546

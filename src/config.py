@@ -1,41 +1,43 @@
+import os
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).parent.parent
-SRC_DIR = PROJECT_ROOT / "src"
-DATA_DIR = PROJECT_ROOT / "data"
-LOGS_DIR = PROJECT_ROOT / "logs"
-MODELS_DIR = PROJECT_ROOT / "models"
-NOTEBOOKS_DIR = PROJECT_ROOT / "notebooks"
-PLOTS_DIR = PROJECT_ROOT / "plots"
-RESULTS_DIR = PROJECT_ROOT / "results"
-SCRIPTS_DIR = PROJECT_ROOT / "scripts"
-TESTS_DIR = PROJECT_ROOT / "tests"
+# --- CHEMINS DU PROJET ---
+SRC_DIR = Path(__file__).resolve().parent
+PROJECT_DIR = SRC_DIR.parent
+PROJECT_ROOT = PROJECT_DIR  # Résout l'erreur PROJECT_ROOT
 
-for dir in [
-    DATA_DIR,
-    LOGS_DIR,
-    MODELS_DIR,
-    NOTEBOOKS_DIR,
-    PLOTS_DIR,
-    RESULTS_DIR,
-    SCRIPTS_DIR,
-    TESTS_DIR,
-]:
-    dir.mkdir(exist_ok=True)
+DATA_DIR = PROJECT_DIR / "data"
+MODELS_DIR = PROJECT_DIR / "models"
+RESULTS_DIR = PROJECT_DIR / "results"
+PLOTS_DIR = PROJECT_DIR / "plots"
+LOGS_DIR = PROJECT_DIR / "logs"
 
-ENV_FILE = PROJECT_ROOT / ".env"
-APP_ENTRYPOINT = PROJECT_ROOT / "src" / "app.py"
+# --- FICHIERS DE SORTIE (Résout l'erreur MODEL_METRICS_FILE) ---
 MODEL_METRICS_FILE = RESULTS_DIR / "model_metrics.csv"
 
+# --- CONFIGURATION STREAMLIT & RÉSEAU ---
+APP_ENTRYPOINT = SRC_DIR / "app.py"
 STREAMLIT_HOST = "localhost"
 STREAMLIT_PORT = 8501
 
-# Students must replace this example with their trained models.
-# Each entry must point to a serialized model saved as `.joblib`, `.pkl`, or `.pickle`.
+# --- CONFIGURATION DE L'ENVIRONNEMENT ---
+ENV_FILE = PROJECT_DIR / ".env"
+
+# --- REGISTRE DES MODÈLES ENTRAÎNÉS ---
 MODELS = {
-    "model_a": {
-        "name": "Model A",
-        "description": "A simple baseline model.",
-        "path": MODELS_DIR / "model_a.pkl",
+    "ridge": {
+        "name": "Régression Ridge (Expert)",
+        "description": "Modèle linéaire avec régularisation L2 et Standard Scaling intégré.",
+        "path": MODELS_DIR / "ridge_expert_model.joblib",
     },
+    "rf": {
+        "name": "Random Forest (Expert)",
+        "description": "Ensemble d'arbres de décision optimisé pour capturer les non-linéarités.",
+        "path": MODELS_DIR / "random_forest_expert_model.joblib",
+    },
+    "gb": {
+        "name": "Gradient Boosting (Expert)",
+        "description": "Modèle de boosting séquentiel offrant d'excellentes performances prédictives.",
+        "path": MODELS_DIR / "gradient_boosting_expert_model.joblib",
+    }
 }
